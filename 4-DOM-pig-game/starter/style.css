@@ -2,6 +2,23 @@
 *** GENERAL
 **********************************************/
 
+.insert-name {
+    position: absolute;
+    top: 520px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #555;
+    font-size: 18px;
+    font-family: 'Courier New';
+    text-align: center;
+    padding: 10px;
+    width: 160px;
+    text-transform: uppercase;
+}
+
+#dice-1 {top: 120px }
+#dice-2 {top: 256px }
+
 * {
     margin: 0;
     padding: 0;
