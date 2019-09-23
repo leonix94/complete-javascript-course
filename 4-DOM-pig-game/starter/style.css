@@ -2,13 +2,13 @@
 *** GENERAL
 **********************************************/
 
-.insert-name {
+.insert-score {
     position: absolute;
     top: 520px;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #555;
-    font-size: 18px;
+    font-size: 14px;
     font-family: 'Courier New';
     text-align: center;
     padding: 10px;

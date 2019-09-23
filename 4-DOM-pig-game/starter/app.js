@@ -69,7 +69,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         dice1DOM.src = 'dice-' + dice1 + '.png';
         dice2DOM.src = 'dice-' + dice2 + '.png';
 
-        if (dice1 | dice2 !== 1) {
+        if (dice1 !== 1 && dice2 !== 1) {
             //add result to roundscore and continue to play
             roundScore += dice1 + dice2;
             activePlayer === 0 ? p1DOM.textContent = roundScore: p2DOM.textContent = roundScore;
@@ -90,11 +90,12 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         //update UI respectively
         scoresDOM[activePlayer].textContent = scores[activePlayer];
         //check if someone won (GLOBAL > 100)
-        if (scores[activePlayer] >= 20) {
+        if (scores[activePlayer] >= 100) {
             namesDOM[activePlayer].textContent = 'WINNER!'
             diceDOM.style.display = 'none';
             panNamesDOM[activePlayer].classList.add('winner');
             gamePlaying = false;
+            return
         } else {
             //Next Player
             nextPlayer();
@@ -122,6 +123,12 @@ function nextPlayer() {
 };
 
 function init() {
+    /*
+    var firstPlayer = 
+    var secondPlayer = 
+    */
+    plName1DOM.innerHTML = prompt('Insert Player 1 Name:');
+    plName2DOM.innerHTML = prompt('Insert Player 2 Name:');
     scores = [0,0];
     roundScore = 0;
     activePlayer = 0;
@@ -129,8 +136,8 @@ function init() {
     p2DOM.textContent = '0';
     sc1DOM.textContent = '0';
     sc2DOM.textContent = '0';
-    plName1DOM.textContent = 'Player 1';
-    plName2DOM.textContent = 'Player 2';
+    // plName1DOM.textContent = 'Player 1';
+    // plName2DOM.textContent = 'Player 2';
     panName1DOM.classList.remove('winner');
     panName2DOM.classList.remove('winner');
     panName1DOM.classList.remove('active');
