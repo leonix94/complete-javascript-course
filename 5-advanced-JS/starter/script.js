@@ -113,3 +113,91 @@ interviewQuestion('middle')('Leo');
 //per chiamarla sono poi necessarie le parentesi finali
 //le variabili create risulteranno inaccessibili dall'esterno, è utile solo per privacy
 
+// Lecture: Closures
+
+function retirement(retirementAge) {
+    var a = ' years left until retirement.';
+    return function(yearOfBirth) {
+        var age = 2016 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+//anche se una funziona ritorna un risultato (in questo caso la funzione ritornata da retirement) questo rimane nello scope chain di ritorno 
+
+var retirementUS = retirement(66);
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
+
+// anche se eseguita, il ritorno della funzione rimane comunque in memoria, conservata nelle variabili, è perciò possibile assegnare un parametro successivamente
+
+retirementGermany(1990);
+retirementUS(1990);
+retirementIceland(1990);
+
+//il concetto chiave è sempre quello che le funzioni sono trattate come degli oggetti
+
+function interviewQuestion(answ) {
+    return function(name) {
+        if (answ == 'rich') {
+            console.log(name + ' is it your income greater than 35000 p/y?')
+        } else if (answ == 'middle') {
+            console.log(name + ' is it your income between 26000 and 35000 p/y?')
+        } else {
+            console.log(name + ' is it your income less than 26000 p/y?')
+        }
+    }
+}
+
+var answCanditate1 = interviewQuestion('rich');
+
+answCanditate1('john');
+
+// si possono prestare metodi ad altri oggetti che non li possiedono tramite il metodo call, applicabile a tutti i metodi associati ad oggetti
+
+var studente = {
+    nome: 'ciccio',
+    cognome: 'buffo',
+    annoiscrizione: 2009,
+    aa: function(actualYear) {
+        console.log(actualYear - this.annoiscrizione)
+    }
+}
+
+studente.aa(2019);
+
+var altrostudente = {
+    nome: 'altro',
+    annoiscrizione: 2013
+}
+
+studente.aa.call(altrostudente, 2019);
+
+//il metodo bind è simile, ma non chiama immediatamente la funzione ma la conserva in una variabile, anche assegnando alcuni argomenti
+
+var aa2019 = studente.aa.bind(altrostudente, 2019);
+
+aa2019();
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes
+}
+
+function calcAge(el) {
+    return 2019 - el;
+}
+
+function isFullAge(el, limit) {
+    return el >= limit;
+}
+
+var ages = arrayCalc(years, calcAge);
+
+var fullUS = arrayCalc(ages, isFullAge.bind(ages, 21));
+
+console.log(ages);
+console.log(fullUS);
