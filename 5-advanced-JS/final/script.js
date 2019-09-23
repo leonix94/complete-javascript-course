@@ -208,9 +208,13 @@ function retirement(retirementAge) {
     }
 }
 
+//anche se una funziona ritorna un risultato (in questo caso la funzione ritornata da retirement) questo rimane nello scope chain di ritorno 
+
 var retirementUS = retirement(66);
 var retirementGermany = retirement(65);
 var retirementIceland = retirement(67);
+
+// anche se eseguita, il ritorno della funzione rimane comunque in memoria, conservata nelle variabili, è perciò possibile assegnare un parametro successivamente
 
 retirementGermany(1990);
 retirementUS(1990);
@@ -232,13 +236,13 @@ function interviewQuestion(job) {
 }
 
 interviewQuestion('teacher')('John');
-*/
+
 
 
 
 /////////////////////////////
 // Lecture: Bind, call and apply
-/*
+
 var john = {
     name: 'John',
     age: 26,
@@ -296,7 +300,7 @@ var ages = arrayCalc(years, calculateAge);
 var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
 console.log(ages);
 console.log(fullJapan);
-*/
+
 
 
 
@@ -327,7 +331,7 @@ c) correct answer (I would use a number for this)
 */
 
 
-/*
+
 (function() {
     function Question(question, answers, correct) {
         this.question = question;
@@ -374,7 +378,7 @@ c) correct answer (I would use a number for this)
 
     questions[n].checkAnswer(answer);
 })();
-*/
+
 
 
 
@@ -391,7 +395,7 @@ c) correct answer (I would use a number for this)
 */
 
 
-/*
+
 (function() {
     function Question(question, answers, correct) {
         this.question = question;
@@ -470,4 +474,3 @@ c) correct answer (I would use a number for this)
     nextQuestion();
     
 })();
-*/
